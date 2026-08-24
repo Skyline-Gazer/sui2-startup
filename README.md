@@ -35,4 +35,4 @@ Use these values on the Cloudflare Pages **Build settings** screen:
 - Root directory (advanced): leave blank to use the repository root
 - Environment variables (advanced): none required
 
-The Node.js version is pinned to Node.js 22 in `.node-version`. The build script installs the `sui2` submodule dependencies and passes the repository-level `data.json` to the build. No Cloudflare API credentials are stored in GitHub.
+The Node.js version is pinned to Node.js 26 in `.node-version`. The build script installs the `sui2` submodule dependencies and passes the repository-level `data.json` to the build. No Cloudflare API credentials are stored in GitHub.
