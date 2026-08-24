@@ -1,0 +1,43 @@
+name: Update submodule
+
+on:
+  schedule:
+    # GitHub Actions cron uses UTC. This runs every day at 00:00 UTC.
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+# Allow the workflow's GITHUB_TOKEN to commit the updated gitlink back to this
+# repository. Repository settings must allow GitHub Actions write access.
+permissions:
+  contents: write
+
+concurrency:
+  group: update-submodule-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository and submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          persist-credentials: true
+
+      - name: Update submodules from their upstream default branches
+        run: git submodule update --init --recursive --remote --checkout
+
+      - name: Commit and push update when needed
+        run: |
+          if git diff --quiet --exit-code -- sui2; then
+            echo "No submodule update found."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- .gitmodules
+          git add -- sui2
+          git commit -m "chore: update submodule"
+          git push
