@@ -26,11 +26,13 @@ Commit the updated submodule reference only after running `./build.sh` successfu
 
 Connect this repository to a Cloudflare Pages project with Git Integration. Cloudflare then builds every configured branch and adds preview URLs and deployment checks to pull requests without a separate GitHub Actions workflow.
 
-Use these Pages build settings:
+Use these values on the Cloudflare Pages **Build settings** screen:
 
+- Framework preset: `None`
 - Production branch: `master`
 - Build command: `./build.sh`
 - Build output directory: `sui2/dist`
-- Root directory: `/`
+- Root directory (advanced): leave blank to use the repository root
+- Environment variables (advanced): none required
 
-The Node.js version is pinned in `.node-version`. No Cloudflare API credentials are stored in GitHub.
+The Node.js version is pinned to Node.js 22 in `.node-version`. The build script installs the `sui2` submodule dependencies and passes the repository-level `data.json` to the build. No Cloudflare API credentials are stored in GitHub.
