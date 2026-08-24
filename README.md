@@ -25,6 +25,6 @@ Commit the updated submodule reference only after running `./build.sh` successfu
 
 ## Deployment
 
-GitHub Actions builds the site with Node.js 22 and deploys `sui2/dist` to the Cloudflare Pages project named `start`. Pull requests create preview deployments; pushes to `master` update production.
+GitHub Actions builds the site with Node.js 22 for pull requests and pushes. Pushes to `master` deploy `sui2/dist` to the Cloudflare Pages project named `start`.
 
 The repository requires the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` Actions secrets.

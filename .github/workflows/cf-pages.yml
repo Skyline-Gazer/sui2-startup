@@ -44,6 +44,7 @@ jobs:
           WEBMANIFEST_DESCRIPTION: A startpage for self-hosted services and commonly used websites.
 
       - name: Publish
+        if: github.event_name == 'push'
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
