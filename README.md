@@ -7,7 +7,6 @@ The site configuration lives in `data.json`; the `sui2` submodule is pinned to a
 
 ```sh
 git submodule update --init
-npm install --prefix sui2
 ./build.sh
 ```
 
@@ -25,6 +24,13 @@ Commit the updated submodule reference only after running `./build.sh` successfu
 
 ## Deployment
 
-GitHub Actions builds the site with Node.js 22 for pull requests and pushes. Pushes to `master` deploy `sui2/dist` to the Cloudflare Pages project named `start`.
+Connect this repository to a Cloudflare Pages project with Git Integration. Cloudflare then builds every configured branch and adds preview URLs and deployment checks to pull requests without a separate GitHub Actions workflow.
 
-The repository requires the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` Actions secrets.
+Use these Pages build settings:
+
+- Production branch: `master`
+- Build command: `./build.sh`
+- Build output directory: `sui2/dist`
+- Root directory: `/`
+
+The Node.js version is pinned in `.node-version`. No Cloudflare API credentials are stored in GitHub.
