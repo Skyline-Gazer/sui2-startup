@@ -30,7 +30,7 @@ Use these values on the Cloudflare Pages **Build settings** screen:
 
 - Framework preset: `None`
 - Production branch: `master`
-- Build command: `./build.sh`
+- Build command: `bash build.sh`
 - Build output directory: `sui2/dist`
 - Root directory (advanced): leave blank to use the repository root
 - Environment variables (advanced): none required
